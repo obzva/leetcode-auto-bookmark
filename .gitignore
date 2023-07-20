@@ -1,2 +1,4 @@
-/venv
-/.vscode
+venv
+.vscode
+.env
+text.txt
