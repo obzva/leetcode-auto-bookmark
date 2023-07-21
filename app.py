@@ -7,38 +7,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
-import os
-from dotenv import load_dotenv
 from tqdm import tqdm
-import argparse
-
-# Define the argument parser
-parser = argparse.ArgumentParser(description="Add or remove problems to a list.")
-parser.add_argument(
-    "--listname", type=str, help="List name where you want to add problems into"
-)
-parser.add_argument(
-    "--add",
-    dest="action",
-    action="store_const",
-    const="Add",
-    help="Add problems to the list",
-)
-parser.add_argument(
-    "--remove",
-    dest="action",
-    action="store_const",
-    const="Remove",
-    help="Remove problems from the list",
-)
-
-# Parse the arguments
-args = parser.parse_args()
 
 
 # Get the values from the parsed arguments
-listname = args.listname
-add = args.action
+leetcode_session_token = input("leetcode-session-token: ")
+listname = input("listname: ")
+add = input("action ( Add / Remove ): ")
 
 # read text.txt
 f = open("text.txt", "r")
@@ -50,11 +25,6 @@ url_pattern = re.compile(
     r"https://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
 )
 urls = url_pattern.findall(text)
-
-
-# get the value of your key
-load_dotenv()
-leetcode_session_token = os.getenv("LEETCODE_SESSION")
 
 # Create a new instance of the Google Chrome driver
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
