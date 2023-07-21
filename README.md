@@ -87,9 +87,11 @@ After you've got proper list of links, save it as `text.txt` file into the proje
 Execute this CLI command in the project root.
 ```bash
 python app.py
+```
 
 or
 
+```
 sudo python app.py
 ```
 
